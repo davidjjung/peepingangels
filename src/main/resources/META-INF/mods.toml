@@ -1,0 +1,46 @@
+modLoader = "javafml"
+loaderVersion = "[32,)"
+issueTrackerURL = "https://github.com/davidjjung/peepingangels/issues"
+license = "MIT License"
+
+[[mods]]
+modId = "peeping_angels"
+version = "${file.jarVersion}"
+logoFile = "logo.png"
+itemIcon = "minecraft:dirt"
+configBackground = "minecraft:textures/block/dirt.png"
+authors = "DavigJ"
+credits = "Raspmary, NCP Bails"
+displayURL = "https://modrinth.com/project/peeping-angels"
+displayName = "Peeping Angels"
+description = '''
+    Peepers from Caverns and Chasms only move when their targets aren't looking.
+    '''
+
+[[dependencies.peeping_angels]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.2,1.19.3)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.peeping_angels]]
+modId = "forge"
+mandatory = true
+versionRange = "[43.3.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.peeping_angels]]
+modId = "blueprint"
+mandatory = true
+versionRange = "[6.2.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.peeping_angels]]
+modId = "caverns_and_chasms"
+mandatory = true
+versionRange = "[1.0.2,)"
+ordering = "AFTER"
+side = "BOTH"
