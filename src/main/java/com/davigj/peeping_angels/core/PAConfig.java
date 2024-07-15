@@ -13,11 +13,11 @@ public class PAConfig {
 
         Common (ForgeConfigSpec.Builder builder) {
             builder.push("changes");
-            lookThreshold = builder.comment("Looking threshold.\n Closer to -1 means the player's head must be turned closer to the peeper to make it freeze").define("Looking threshold", -0.5);
+            lookThreshold = builder.comment("Looking threshold.\n Closer to -1 means the player's head must be looking at the peeper more directly to make it freeze").define("Looking threshold", -0.5);
             maxSpeedBoost = builder.comment("Highest the peeper speed bonus can get. \n Default is currently CnC's default, feels a bit slow in this context though").define("Max speed boost", 0.23);
             accelerationInterval = builder.comment("Unit by which peeper's speed increases per tick when moving").define("Acceleration interval", 4.0E-4);
             steamBlow = builder.comment("Peepers move faster while defusing").define("blowing off steam", false);
-            steamMultiplier = builder.comment("Mulitiplier for the speed bonus when blowing off steam").define("steam multiplier", 2);
+            steamMultiplier = builder.comment("Mulitiplier for the speed bonus when defusing and able to move").define("defuse multiplier", 2);
             builder.pop();
         }
     }

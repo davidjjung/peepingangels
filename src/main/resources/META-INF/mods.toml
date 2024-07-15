@@ -14,7 +14,7 @@ credits = "Raspmary, NCP Bails"
 displayURL = "https://modrinth.com/project/peeping-angels"
 displayName = "Peeping Angels"
 description = '''
-    Peepers from Caverns and Chasms only move when their targets aren't looking.
+    Peepers from Caverns and Chasms only move when their targets don't see them.
     '''
 
 [[dependencies.peeping_angels]]
