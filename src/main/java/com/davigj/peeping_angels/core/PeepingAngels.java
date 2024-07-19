@@ -1,20 +1,27 @@
 package com.davigj.peeping_angels.core;
 
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.resource.PathPackResources;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.nio.file.Path;
 
 @Mod(PeepingAngels.MOD_ID)
 public class PeepingAngels {
     public static final String MOD_ID = "peeping_angels";
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public PeepingAngels() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -23,25 +30,24 @@ public class PeepingAngels {
 
 		REGISTRY_HELPER.register(bus);
 
-        bus.addListener(this::commonSetup);
-        bus.addListener(this::clientSetup);
-        bus.addListener(this::dataSetup);
+        bus.addListener(this::addResourcePack);
         context.registerConfig(ModConfig.Type.COMMON, PAConfig.COMMON_SPEC);
     }
 
-    private void commonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
+    public void addResourcePack(AddPackFindersEvent event) {
+        String packName = "resourcepacks/peeping_overrides";
 
+        event.addRepositorySource((packConsumer, constructor) -> {
+            Pack pack = Pack.create(MOD_ID + ":" + packName, true, () -> {
+                Path path = ModList.get().getModFileById(MOD_ID).getFile().findResource("/" + packName);
+                return new PathPackResources(packName, path);
+            }, constructor, Pack.Position.TOP, PackSource.DEFAULT);
+
+            if (pack != null) {
+                packConsumer.accept(pack);
+            } else {
+                LOGGER.error(MOD_ID + ": Failed to register pack \"" + packName + "\"");
+            }
         });
-    }
-
-    private void clientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
-
-        });
-    }
-
-    private void dataSetup(GatherDataEvent event) {
-
     }
 }
