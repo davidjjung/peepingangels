@@ -78,7 +78,7 @@ sourceSets.main.resources {
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
     implementation fg.deobf("com.teamabnormals:blueprint:${project.minecraft}-${project.blueprint}")
-    implementation fg.deobf("maven.modrinth:caverns-and-chasms:fsal1BlK")
+    implementation fg.deobf("maven.modrinth:caverns-and-chasms:${project.caverns_and_chasms}")
     
     compileOnly fg.deobf("mezz.jei:jei-${project.minecraft}-common-api:${project.jei}")
     compileOnly fg.deobf("mezz.jei:jei-${project.minecraft}-forge-api:${project.jei}")
@@ -88,7 +88,18 @@ dependencies {
 }
 
 repositories {
-    maven { url "https://maven.jaackson.me" }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Team Abnormals"
+                url = "https://maven.teamabnormals.com"
+            }
+        }
+        forRepositories(fg.repository) // Only add this if you're using ForgeGradle, otherwise remove this line
+        filter {
+            includeGroup "com.teamabnormals"
+        }
+    }
     maven { url "https://dvs1.progwml6.com/files/maven/" }
     maven { url "https://modmaven.k-4u.nl" }
     maven { url "https://www.cursemaven.com" }

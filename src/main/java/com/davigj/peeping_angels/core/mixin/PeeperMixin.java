@@ -2,7 +2,7 @@ package com.davigj.peeping_angels.core.mixin;
 
 import com.davigj.peeping_angels.core.PAConfig;
 import com.davigj.peeping_angels.core.other.PeepUtil;
-import com.teamabnormals.caverns_and_chasms.common.entity.monster.Peeper;
+import com.teamabnormals.caverns_and_chasms.common.entity.monster.creeper.Peeper;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
