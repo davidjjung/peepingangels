@@ -1,7 +1,7 @@
 package com.davigj.peeping_angels.core.other;
 
 import com.davigj.peeping_angels.core.PAConfig;
-import com.teamabnormals.caverns_and_chasms.common.entity.monster.Peeper;
+import com.teamabnormals.caverns_and_chasms.common.entity.monster.creeper.Peeper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
