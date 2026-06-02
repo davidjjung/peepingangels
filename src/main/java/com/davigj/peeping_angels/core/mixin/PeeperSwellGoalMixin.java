@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.*;
 
 import javax.annotation.Nullable;
 
-@Mixin(PeeperSwellGoal.class)
+@Mixin(value = PeeperSwellGoal.class, remap = false)
 public abstract class PeeperSwellGoalMixin {
     @Mutable
     @Shadow
